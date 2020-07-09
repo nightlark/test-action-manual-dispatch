@@ -18,12 +18,12 @@ on:
 jobs:
   condMatrixJob:
     runs-on: ubuntu-latest
-    if: contains(github.event.inputs.tags, matrix.id)
     strategy:
       matrix:
         id: [test, trial, exam]  
     steps:
       - run: echo "id = ${{ matrix.id }}"
+        if: contains(github.event.inputs.tags, matrix.id)
   printInputs:
     runs-on: ubuntu-latest
     if: github.event.inputs.tags
