@@ -16,6 +16,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  condMatrixJob:
+    runs-on: ubuntu-latest
+    if: contains(github.event.inputs.tags, matrix.id)
+    strategy:
+      matrix:
+        id: [test, trial, exam]  
+    steps:
+      - run: echo "id = ${{ matrix.id }}"
   printInputs:
     runs-on: ubuntu-latest
     if: github.event.inputs.tags
